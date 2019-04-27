@@ -1,0 +1,41 @@
+server:
+  port: 7030
+spring:
+  jpa:
+    # 让hibernate打印执行的SQL
+    show-sql: true
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+  jackson:
+    serialization:
+      indent-output: true
+logging:
+  level:
+    root: INFO
+    # 配置日志级别，让hibernate打印出执行的SQL参数
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    org.springframework.cloud.sleuth: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        # 开放所有监控端点
+        include: '*'
+  endpoint:
+    health:
+      # 是否展示健康检查详情
+      show-details: always
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://jingfeng:minghui@localhost:8761/eureka/
+  instance: 
+    prefer-ip-address: true
+    appname: ocloud-service
+    metadata-map:
+      cluster: MAIN

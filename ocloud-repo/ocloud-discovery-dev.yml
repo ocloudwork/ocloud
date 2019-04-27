@@ -1,0 +1,21 @@
+server:
+  port: 8761
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://jingfeng:minghui@localhost:8761/eureka/
+  # 服务端设置
+  server:
+    # 自我保护，将出现故障的服务不剔除
+    enableSelfPreservation: true
+    # 清理无效节点的时间间隔，缺省 (1000*60)ms
+    evictionIntervalTimerInMs: 6000
+    # 当获取不到对应实例时，需要等待的时间，缺省 (1000*60*5)ms
+    waitTimeInMsWhenSyncEmpty: 6000
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+    preferIpAddress: false
+    metadata-map:
+      cluster: MAIN

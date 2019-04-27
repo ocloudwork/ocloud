@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" th:href="@{${#strings.concat(path,'/global/plugins/bootstrap/css/bootstrap.min.css')}}" />
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" th:href="@{${#strings.concat(path,'/global/plugins/bootstrap/css/bootstrap-theme.min.css')}}"/>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script th:src="@{${#strings.concat(path,'/global/jquery/jquery-3.1.1.min.js')}}"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script th:src="@{${#strings.concat(path,'/global/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript">
+	$(function(){
+		alert("aaa");
+	});
+</script>
+</head>
+<body>
+	<span th:text="#{ocloud.app.welcome}"></span>
+</body>
+</html>

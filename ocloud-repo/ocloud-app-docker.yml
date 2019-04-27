@@ -1,0 +1,36 @@
+server:
+  port: 7050
+spring:
+  mvc:
+    async:
+      request-timeout: 15000
+  thymeleaf:
+    cache: false
+  zipkin:
+    base-url: http://my.ocloudwork.com:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      cluster: MAIN
+feign:
+  hystrix:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+#ribbon负载均衡策略
+ocloud-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

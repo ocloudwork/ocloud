@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ocloud-turbine
+server:
+  port: 8031
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+  instance:
+    prefer-ip-address: true
+turbine:
+  # 要监控的微服务列表，多个用,分隔
+  appConfig: ocloud-service,ocloud-app
+  clusterNameExpression: "'default'"

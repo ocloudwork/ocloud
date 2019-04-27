@@ -1,0 +1,47 @@
+version: "3.1"
+services:
+  peer1:
+    image: ocloud/ocloud-discovery:1.0.0
+    ports:
+      - "8761:8761"
+    environment:
+      - spring.profiles.active=peer1
+  peer2:
+    image: ocloud/ocloud-discovery:1.0.0
+    hostname: peer2
+    ports:
+      - "8762:8762"
+    environment:
+      - spring.profiles.active=peer2
+  ocloud-gateway:
+    image: ocloud/ocloud-gateway:1.0.0
+    links:
+      - peer1
+      - peer2
+    ports:
+      - "8090:8090"
+  ocloud-service:
+    image: ocloud/ocloud-service:1.0.0
+    links:
+      - peer1
+      - peer2
+    ports:
+      - "7030:7030"
+  ocloud-app:
+    image: ocloud/ocloud-app:1.0.0
+    links:
+      - peer1
+      - peer2
+    ports:
+      - "7050:7050"
+  ocloud-hystrix:
+    image: ocloud/ocloud-hystrix:1.0.0
+    ports:
+      - "8051:8051"
+  ocloud-turbine:
+    image: ocloud/ocloud-turbine:1.0.0
+    links:
+      - peer1
+      - peer2
+    ports:
+      - "8031:8031"

@@ -1,0 +1,36 @@
+server:
+  port: 8090
+spring:
+  zipkin:
+    base-url: http://my.ocloudwork.com:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      cluster: MAIN
+zuul:
+  sensitive-headers: Cookie,Set-Cookie,Authorization
+  routes:
+#    api-a:
+#      path: /api-a/**
+#      serviceId: ocloud-service
+    app:
+      path: /app/**
+      serviceId: ocloud-app
+#    api-url:
+#      path: /api/**
+#      url: forward:/home

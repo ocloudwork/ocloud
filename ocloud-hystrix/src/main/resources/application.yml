@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: ocloud-hystrix
+server:
+  port: 8051

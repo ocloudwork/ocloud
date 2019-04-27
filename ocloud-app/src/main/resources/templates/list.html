@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title></title>
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+
+            border: 1px solid #000;
+            background: #efefef;
+            color: red;
+        }
+
+        .example-td {
+            width: 200px;
+        }
+    </style>
+</head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	deferred();
+	function deferred(){
+		$.get('defer?accessToken=a',function(data){
+			console.log(data);
+			deferred();
+		});
+	}
+</script>
+<body>
+使用Thymeleaf模板引擎渲染web视图
+<table border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>AGE</td>
+        <td>NAME</td>
+    </tr>
+    </thead>
+    <tr th:each="user : ${users}">
+        <td th:each="user1 : ${user}" class="example-td">
+            <span th:text="${user1.value}"></span>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
